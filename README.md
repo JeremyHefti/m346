@@ -150,7 +150,7 @@ Zu überarbeitene Stellen:
 aws lambda add-permission \
   --source-account (YOUR_ACCOUNT_ID)
    ```
-## Anleitung um die Notwendigen Informationen zu erhalten
+### Anleitung um die Notwendigen Informationen zu erhalten
 Gehe in dein AWS-Lab und navigiere zu deinen Rollen:
 - Geben Sie in der Suche IAM ein.
 ![alt text](image-3.png)
@@ -169,6 +169,7 @@ Führen Sie danach die Datei aus:
 ```
 ./setup_csv_to_jsona
 ```
+Beim ersten Durchgang kommt bei der Erstellung der Lambda-Funktion eine Anzeige, von den Informationen der Funktion. Sie müssen nur q eingeben und nichts anpassen. Bei weiteren Ausführungen sollte dies nicht mehr vorkommen.
 
 # Projektreflexion Jeremy Hefti
 
