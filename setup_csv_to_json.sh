@@ -5,7 +5,7 @@ REGION="us-east-1"
 IN_BUCKET_NAME="csv-to-json-in-$(date +%s)"
 OUT_BUCKET_NAME="csv-to-json-out-$(date +%s)"
 LAMBDA_FUNCTION_NAME="CsvToJsonConverter-$(date +%s)"
-ROLE_ARN="arn:aws:iam::533539319174:role/LabRole"  # VORHANDENE ROLLE EINTRAGEN
+ROLE_ARN="YOUR_ROLE_ARN"  # VORHANDENE ROLLE EINTRAGEN
 ZIP_FILE="lambda_function_payload.zip"
 LAMBDA_FILE="lambda_function.py"
 CSV_FILE="sample.csv"
@@ -73,7 +73,7 @@ aws lambda add-permission \
   --statement-id s3invoke \
   --action "lambda:InvokeFunction" \
   --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
-  --source-account 533539319174
+  --source-account (YOUR_ACCOUNT_ID)
 
 # S3-Trigger hinzufügen
 echo "Füge S3-Trigger hinzu..."

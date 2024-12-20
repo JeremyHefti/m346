@@ -138,6 +138,33 @@ Geben Sie die nötigen Berechtigungen dem Bash-file damit man es ausführen kann
 ```bash
 chmod +x setup_csv_to_json.sh
 ```
+Bearbeiten Sie das Skript wiefolgt:
+```
+nano setup_csv_to_json.sh
+```
+Zu überarbeitene Stellen:
+   ```plaintext
+   #Variabeln
+   ROLE_ARN="YOUR_ROLE_ARN"  # VORHANDENE ROLLE EINTRAGEN
+   # Lambda-Berechtigungen für S3 hinzufügen
+aws lambda add-permission \
+  --source-account (YOUR_ACCOUNT_ID)
+   ```
+## Anleitung um die Notwendigen Informationen zu erhalten
+Gehe in dein AWS-Lab und navigiere zu deinen Rollen:
+- Geben Sie in der Suche IAM ein.
+![alt text](image-3.png)
+- Klicken Sie auf IAM und Sie sollten auf das IAM Dashboard kommen.
+- Dann auf klicken Sie auf der linken Seite auf Rollen.
+![alt text](image-4.png)
+- Dann sollten Ihnen eure vorhandenen Rollen angezeigt werden. Suchen Sie nach der Rolle `LabRole` und klicken Sie diese an.
+- Sie sollten dann die Informationen der Rolle sehen.
+![alt text](image-5.png)
+- Dann kopieren Sie die ARN Lab-Role und fügen diese im Skript ein.
+- Die Zahl, welche in dieser Rolle vorkommt ist auch gerade Ihre Account-ID. Kopiere diese aus der Rolle und fügen Sie diese dann im Skript hinzu. 
+- Spreichern Sie das überarbeitete File. Und Fertig!
+
+
 Führen Sie danach die Datei aus:
 ```
 ./setup_csv_to_json
