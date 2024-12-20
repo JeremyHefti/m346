@@ -194,6 +194,27 @@ Leon und ich teilten zu Beginn die Aufgaben untereinander auf und unterstützten
 |-----------------|-------------------------------------------------------------------------------------------------|
 | Zeitmanagement  | Mit allen anderen Projekten gleichzeitig hatten wir eine stressige Zeit und müssen daran arbeiten. |
 
+# Projektreflexion Leon Höfferer
+
+Nun, da wir das Projekt abgeschlossen kann ich sagen, dass ich definitiv viel neues dazugelernt habe und durch das erarbeiten mit Jeremy mein Wissen was das Thema Cloud angeht erweitern konnte. Es gab auch einige Probleme doch die konnten wir zusammen beheben.
+
+## Erfahrungen
+
+### Positive Erfahrungen
+
+| Punkt               | Beschreibung                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| Teamarbeit          | Mit Jeremy zusammen am Projekt zu arbeiten hat super funktioniert. |
+| Freiheit            | Ich fand es sehr toll, dass wir die Programmiersprache frei wählen durften.                |
+| Technisches Wissen  | Wir hatten zwar schonmal das Thema Cloud in einem Ük, durch diese Projekt konnte ich jedoch trotzem einiges neues an Wissen ergattern. |
+
+### Negative Erfahrungen
+
+| Punkt           | Beschreibung                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------|
+| Zeitmanagement  | Wir hatten leider einen Zeitstress durch die diversen anderen Projekte und die vielen Prüfungen vor dern Festtagen. |
+
+
 ## Autor
 
 **Leon Höfferer & Jeremy Hefti**
