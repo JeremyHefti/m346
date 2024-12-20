@@ -23,111 +23,126 @@ Das Skript:
 
 ---
 
-## Verwendung
+## AWS-Installation und Konfigurationsanleitung für Ubuntu
 
-### 1. Skript ausführen
+Dieses Tutorial bietet eine Schritt-für-Schritt-Anleitung zur Installation und Konfiguration der AWS CLI unter Ubuntu und der Einrichtung einer Verbindung zu AWS-Diensten.
 
-Klone das Repository und führe den folgenden Command aus:
+## Installation
 
-```bash
-bash setup.sh
-```
+### 1. AWS CLI auf Ubuntu installieren
 
-### 2. Ablauf
+**Achtung:** Die Installation der AWS CLI über den Paketmanager von Ubuntu liefert die veraltete Version 1. Verwenden Sie die neueste Version aus der offiziellen AWS-Dokumentation.
 
-1. **S3-Buckets erstellen**: Zwei S3-Buckets werden erstellt, deren Namen automatisch mit einem Zeitstempel versehen werden, um Kollisionen zu vermeiden.
-2. **Lambda-Funktion bereitstellen**: Eine Python-basierte Lambda-Funktion wird erstellt und bereitgestellt.
-3. **Trigger hinzufügen**: Ein S3-Event-Trigger wird konfiguriert, um die Lambda-Funktion bei jedem neuen Objekt im Input-Bucket auszulösen.
-4. **Trigger hinzufügen**: Ein S3-Bucket wird konfiguriert, in den die Lambda Funktion das JSON file ablegt.
+#### Beispiel: AWS CLI auf Ubuntu installieren
 
-### 3. CSV-Datei hochladen
+1. **Aktualisieren Sie den Paketmanager und installieren Sie `curl`:**
+   ```bash
+   sudo apt update
+   sudo apt install curl
+   ```
 
-Lade eine CSV-Datei in den Input-Bucket hoch:
+2. **Laden Sie die neueste Version der AWS CLI herunter:**
+   ```bash
+   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+   ```
 
-```bash
-aws s3 cp example.csv s3://<IN_BUCKET_NAME>
-```
+3. **Entpacken Sie die heruntergeladene Datei:**
+   ```bash
+   unzip awscliv2.zip
+   ```
 
-Die Lambda-Funktion wird automatisch ausgeführt und die konvertierte JSON-Datei im Output-Bucket gespeichert.
+4. **Führen Sie das Installationsskript aus:**
+   ```bash
+   sudo ./aws/install
+   ```
 
-### 4. Ergebnis abrufen
-
-Lade die JSON-Datei aus dem Output-Bucket herunter:
-
-```bash
-aws s3 cp s3://<OUT_BUCKET_NAME>/example.json ./example.json
-```
-
----
-
-## Skript-Parameter
-
-### Variablen
-
-- **REGION**: Die AWS-Region, in der die Ressourcen erstellt werden (Standard: `us-east-1`).
-- **IN_BUCKET_NAME**: Name des Input-S3-Buckets (automatisch generiert).
-- **OUT_BUCKET_NAME**: Name des Output-S3-Buckets (automatisch generiert).
-- **LAMBDA_FUNCTION_NAME**: Name der Lambda-Funktion (Standard: `CsvToJsonConverter`).
-- **ROLE_ARN**: ARN der IAM-Rolle, die die Lambda-Funktion verwenden soll.
+5. **Prüfen Sie die Installation:**
+   ```bash
+   aws --version
+   ```
+   Die Ausgabe sollte die installierte Version der AWS CLI anzeigen.
 
 ---
 
-## Beispiel Lambda-Code
+## Konfiguration
 
-Der Lambda-Code wird zur Laufzeit des Skripts generiert und hat folgende Funktionalität:
+Vor der Nutzung der AWS CLI muss diese mit Konto-Informationen und Standardwerten konfiguriert werden. Diese Informationen werden im versteckten Verzeichnis `~/.aws` in den Dateien `credentials` und `config` gespeichert.
 
-1. **CSV-Daten lesen**: Die Datei wird aus dem Input-Bucket geladen.
-2. **Konvertierung**: Die CSV-Daten werden in JSON umgewandelt.
-3. **Speicherung**: Die JSON-Daten werden in den Output-Bucket geschrieben.
+### 2. AWS CLI konfigurieren
 
-```python
-import boto3
-import csv
-import json
-import os
-
-def lambda_handler(event, context):
-    s3 = boto3.client('s3')
-    in_bucket = event['Records'][0]['s3']['bucket']['name']
-    in_key = event['Records'][0]['s3']['object']['key']
-    out_bucket = os.environ['OUTPUT_BUCKET']
-    out_key = in_key.replace('.csv', '.json')
-
-    response = s3.get_object(Bucket=in_bucket, Key=in_key)
-    content = response['Body'].read().decode('utf-8').splitlines()
-
-    reader = csv.DictReader(content)
-    json_data = json.dumps(list(reader))
-
-    s3.put_object(Bucket=out_bucket, Key=out_key, Body=json_data)
-
-    print(f"CSV {in_key} wurde zu JSON konvertiert und nach {out_bucket}/{out_key} hochgeladen.")
-```
-
----
-
-## Fehlersuche
-
-### Häufige Fehler
-
-1. **Ungültige Rolle**:
-   - Stelle sicher, dass `ROLE_ARN` auf eine gültige IAM-Rolle zeigt.
-
-2. **Fehlende Berechtigungen**:
-   - Vergewissere dich, dass die IAM-Rolle Zugriff auf S3 und Lambda hat.
-
-3. **Ungültige CSV-Dateien**:
-   - Prüfe, ob die Datei korrekt formatiert ist und ein gültiges Trennzeichen verwendet wird.
-
-### Logs prüfen
-
-Nutze AWS CloudWatch, um die Logs der Lambda-Funktion zu überprüfen:
-
+Führen Sie den folgenden Befehl aus, um die AWS CLI zu konfigurieren:
 ```bash
-aws logs tail /aws/lambda/CsvToJsonConverter
+aws configure
 ```
 
+#### Geben Sie folgende Details an:
+- **AWS Access Key ID:** x (wird später noch überschrieben)
+- **AWS Secret Access Key:** y (wird später noch überschrieben).
+- **Default region name:** Setzen Sie Ihre bevorzugte Region (z. B. `us-east-1`).
+- **Default output format:** Wählen Sie `json`.
+
+Überprüfen Sie, ob die Dateien `config` und `credentials` im Verzeichnis `~/.aws` erstellt wurden.
+![alt text](image.png)
+### 3. Temporäre Zugangsdaten für das AWS Learner Lab verwenden
+
+Für temporären Zugriff (z. B. AWS Learner Lab):
+
+1. Starten Sie Ihr AWS Learner Lab und rufen Sie die Zugangsdaten ab, indem Sie auf **AWS Details** und dann **Show AWS CLI Credentials** klicken.
+![alt text](image-1.png)
+2. Überschreiben Sie die Datei `~/.aws/credentials` mit den bereitgestellten Zugriffs-Informationen.
+
+   Beispiel:
+   ```plaintext
+   [default]
+   aws_access_key_id = IHRE_ACCESS_KEY
+   aws_secret_access_key = IHR_SECRET_ACCESS_KEY
+   aws_session_token = IHR_SESSION_TOKEN
+   ```
+   ![alt text](image-2.png)
+
+**Hinweis:** Diese Zugangsdaten laufen ab und müssen bei jeder neuen Sitzung aktualisiert werden.
+## Testen der Konfiguration
+
+Testen Sie Ihre AWS CLI-Einrichtung, indem Sie S3-Buckets auflisten:
+```bash
+aws s3 ls
+```
+
+Wenn der Befehl keine Fehlermeldung zurückgibt, ist Ihre AWS CLI korrekt konfiguriert.
+
 ---
+
+### Zusätzliche Ressourcen
+
+- [Offizielle AWS CLI-Dokumentation](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+- [AWS CLI-Konfigurationsdokumentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+
+---
+
+## Projekt einrichten
+
+### 1. Repository klonen
+
+Klonen Sie das Git-Repository mit folgendem Befehl:
+```bash
+git clone https://github.com/JeremyHefti/m346
+```
+
+### 2. Skript ausführen
+
+Navigieren Sie in das geklonte Verzeichnis und führen Sie das Setup-Skript aus:
+```bash
+cd m346
+```
+Geben Sie die nötigen Berechtigungen dem Bash-file damit man es ausführen kann:
+```bash
+chmod +x setup_csv_to_json.sh
+```
+Führen Sie danach die Datei aus:
+```
+./setup_csv_to_json
+```
+
 
 ## Autor
 
