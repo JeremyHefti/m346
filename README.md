@@ -143,6 +143,29 @@ Führen Sie danach die Datei aus:
 ./setup_csv_to_json
 ```
 
+# Projektreflexion Jeremy Hefti
+
+Rückblickend auf das Projekt fand ich es insgesamt sehr gut. Es hatte Höhen und Tiefen, aber gemeinsam mit meinem Teampartner Leon konnten wir alle Hindernisse überwinden. Wenn ich daran denke, welches Wissen wir zu Beginn hatten und welches wir nach Abschluss des Projekts besitzen, hat mir dieses Projekt deutlich gezeigt, wie viel wir dadurch lernen konnten.
+
+Leon und ich teilten zu Beginn die Aufgaben untereinander auf und unterstützten uns gegenseitig bei Problemen. Er war für die Dokumentation verantwortlich, während ich mich auf das Bash-Skript konzentrierte.
+
+## Erfahrungen
+
+### Positive Erfahrungen
+
+| Punkt               | Beschreibung                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| Zusammenarbeit      | Die Zusammenarbeit mit meinem Teampartner Leon hat sehr gut funktioniert. |
+| Wissensbereicherung | Durch das Projekt habe ich viel Neues gelernt.                             |
+| Endprodukt          | Das Endprodukt entspricht unseren Erwartungen und ist voll funktionsfähig. |
+| Ausprobieren        | Wir konnten verschiedene Ansätze und Ideen testen.                          |
+| Freiheit            | Die freie Gestaltung des Projekts hat uns sehr gefallen.                  |
+
+### Negative Erfahrungen und Verbesserungen
+
+| Punkt           | Beschreibung                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------|
+| Zeitmanagement  | Mit allen anderen Projekten gleichzeitig hatten wir eine stressige Zeit und müssen daran arbeiten. |
 
 ## Autor
 
