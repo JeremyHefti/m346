@@ -167,7 +167,7 @@ Gehe in dein AWS-Lab und navigiere zu deinen Rollen:
 
 Führen Sie danach die Datei aus:
 ```
-./setup_csv_to_json
+./setup_csv_to_jsona
 ```
 
 # Projektreflexion Jeremy Hefti
